@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+|                                                                             |
+|                                                                             |
+|                          HOW TO START THE PROJECT                           |
+|                                                                             |
+|------------------------------------------------------------------------------
+
+
+
+#First create an environnement:  virtualenv venv 
+#activate it :venv/Scripts/ACTIVATE  
+#execute the requirements.txt : pip install -r requirements.txt    
+# create a database in MYSQL: name it "ecormerce_prj" or what ever you want but you should change the name in the settings.py in database 
+#if you dont wanna use MYSQL you can use the dbsql.lite3 and replace the database selected and change  it with :
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+---------------
+#after you should move to backend with : cd backend 
+#apply the migrations : python manage.py makemigrations  
+                         python manage.py migrate  
+
+#now you should create a superuser if you want to login to the admin interface to add product  :python manage.py createsuperuser  
+# now start the server : python manage.py runserver 
+
+
+
+  ENJOY !!!!
