@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Accueil{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center fw-bold mb-4">Bienvenue dans notre boutique</h2>
+
+  {% if produits %}
+  <div class="row g-4">
+    {% for item in produits %}
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm border-0 rounded-4">
+
+          <!-- Image -->
+          {% if item.image %}
+            <img src="{{ item.image.url }}" class="card-img-top rounded-top-4" style="height: 200px; object-fit: cover;" alt="{{ item.name }}">
+          {% else %}
+            <img src="{% static 'base/img/no-image.png' %}" class="card-img-top" alt="Image non disponible">
+          {% endif %}
+
+          <!-- Infos produit -->
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="fw-bold text-success">{{ item.price }} DH</p>
+
+            <!-- Boutons -->
+            <div class="mt-auto d-flex flex-column gap-2">
+              <a href="{% url 'produit_detail' item.id %}" class="btn btn-outline-secondary btn-sm">Voir les détails</a>
+              
+              <form method="post" action="{% url 'add_to_cart' item.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-primary btn-sm">🛒 Ajouter au panier</button>
+              </form>
+
+              <a href="{% url 'checkout' %}?product_id={{ item.id }}" class="btn btn-success btn-sm">Acheter</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <div class="alert alert-info text-center">Aucun produit disponible pour le moment.</div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Résultats de recherche{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h3 class="mb-4">Résultats pour : <span class="text-primary">{{ query }}</span></h3>
+
+  {% if produits %}
+    <div class="row g-4">
+      {% for item in produits %}
+        <div class="col-md-3">
+          <div class="card h-100 shadow-sm">
+            <a href="{% url 'produit_detail' item.id %}">
+              {% if item.image %}
+                <img src="{{ item.image.url }}" class="card-img-top" style="height: 180px; object-fit: cover;">
+              {% else %}
+                <img src="{% static 'base/img/no-image.png' %}" class="card-img-top" alt="Aucune image">
+              {% endif %}
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{% url 'produit_detail' item.id %}" class="text-decoration-none text-dark">
+                  {{ item.name }}
+                </a>
+              </h5>
+              <p class="fw-bold text-success">{{ item.price }} DH</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-warning text-center">Aucun produit trouvé pour "{{ query }}".</div>
+  {% endif %}
+</div>
+{% endblock %}

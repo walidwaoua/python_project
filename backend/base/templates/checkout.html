@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Valider ma commande{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 650px;">
+  <div class="card shadow-lg border-0 rounded-4">
+    <div class="card-body p-5">
+
+      <h2 class="text-center mb-4 fw-bold text-primary">📦 Livraison & Paiement</h2>
+
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label for="address" class="form-label fw-semibold">Adresse complète</label>
+          <input type="text" name="address" id="address" class="form-control" placeholder="ex : 123 Rue Hassan II" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="city" class="form-label fw-semibold">Ville</label>
+          <input type="text" name="city" id="city" class="form-control" placeholder="Casablanca, Rabat..." required>
+        </div>
+
+        <div class="mb-3">
+          <label for="postal" class="form-label fw-semibold">Code postal</label>
+          <input type="text" name="postal" id="postal" class="form-control" placeholder="20000" required>
+        </div>
+
+        <div class="mb-4">
+          <label for="country" class="form-label fw-semibold">Pays</label>
+          <input type="text" name="country" id="country" class="form-control" placeholder="Maroc" required>
+        </div>
+
+        <h4 class="text-end mb-4">
+          💰 <span class="fw-bold">Total à payer :</span>
+          <span class="text-success">{{ total }} DH</span>
+        </h4>
+
+        <button type="submit" class="btn btn-success w-100 fw-bold">
+          ✅ Confirmer la commande
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

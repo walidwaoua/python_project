@@ -1,0 +1,64 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% block content %}
+
+<!-- ✅ Animate.css pour les animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<div class="container-fluid px-4">
+  <!-- Titre animé -->
+  <h1 class="mt-4 mb-4 text-center animate__animated animate__fadeInDown">
+    📊 Tableau de bord administrateur
+  </h1>
+
+  <!-- Cartes statistiques -->
+  <div class="row mb-4">
+    <!-- Produits -->
+    <div class="col-xl-4 col-md-6 animate__animated animate__fadeInLeft animate__delay-1s">
+      <div class="card bg-primary text-white mb-4 shadow-lg">
+        <div class="card-body">
+          <h4 class="fw-bold">Produits</h4>
+          <h2 class="display-5">{{ total_produits }}</h2>
+          <p>Produits enregistrés</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commandes -->
+    <div class="col-xl-4 col-md-6 animate__animated animate__fadeInUp animate__delay-1s">
+      <div class="card bg-success text-white mb-4 shadow-lg">
+        <div class="card-body">
+          <h4 class="fw-bold">Commandes</h4>
+          <h2 class="display-5">{{ total_commandes }}</h2>
+          <p>Commandes effectuées</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Utilisateurs -->
+    <div class="col-xl-4 col-md-6 animate__animated animate__fadeInRight animate__delay-1s">
+      <div class="card bg-info text-white mb-4 shadow-lg">
+        <div class="card-body">
+          <h4 class="fw-bold">Utilisateurs</h4>
+          <h2 class="display-5">{{ total_utilisateurs }}</h2>
+          <p>Comptes enregistrés</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message de bienvenue -->
+  <div class="card shadow animate__animated animate__fadeInUp animate__delay-2s">
+    <div class="card-header bg-light">
+      <h5 class="mb-0 fw-semibold">Bienvenue 👋</h5>
+    </div>
+    <div class="card-body">
+      <p class="mb-0">
+        Ce tableau de bord vous permet de consulter les indicateurs clés de la plateforme.
+        
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
